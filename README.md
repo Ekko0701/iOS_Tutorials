@@ -20,5 +20,5 @@
 
 ### CoreData
 [Blog](https://ekko.tistory.com/33)  
-[Github](https://github.com/Ekko0701/iOS_Tutorials/tree/main/CoreData%10_tutorial)
+[Github](https://github.com/Ekko0701/iOS_Tutorials/tree/main/CoreData%10_tutorial)  
 ⚠️✅
