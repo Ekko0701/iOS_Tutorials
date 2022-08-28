@@ -1,14 +1,24 @@
 # iOS_Tutorials
 
-## 2022.07.20
-### CollectionView programmatically (SnapKit)
-[블로그](https://ekko.tistory.com/6?category=983943)
-[파일](https://github.com/Ekko0701/iOS_Tutorials/tree/main/CollectionView_Programmatically_Tutorial)
-### CollectionView in TableViewCell (SnapKit)
+### UICollectionView programmatically (SnapKit) ✅
+[블로그](https://ekko.tistory.com/6?category=983943)  
+[Github](https://github.com/Ekko0701/iOS_Tutorials/tree/main/CollectionView_Programmatically_Tutorial)
 
-## 2022.07.21
-### Activity Ring Animation (UIBezierPath, CAShapeLayer, CABasicAnimation)
+### UICollectionView in TableViewCell (SnapKit) ✅
+[Github](https://github.com/Ekko0701/iOS_Tutorials/tree/main/CollectionViewInTableViewCell_Tutorial)
 
-## 2022.07.23 
-### Pop Up View
-### UIDatePicker (Count Down Timer)
+### UIDatePicker (Count Down Timer) ✅
+[Blog](https://ekko.tistory.com/7?category=983943)  
+[Blog](https://ekko.tistory.com/8?category=983943)  
+[Github](https://github.com/Ekko0701/iOS_Tutorials/tree/main/DatePicker_Tutorial)
+
+### Activity Ring Animation (UIBezierPath, CAShapeLayer, CABasicAnimation) ✅
+[Github](https://github.com/Ekko0701/iOS_Tutorials/tree/main/Activity_Ring_Animation_Tutorial)
+
+### Pop Up View ✅
+[Github](https://github.com/Ekko0701/iOS_Tutorials/tree/main/PopUpView_Tutorial)
+
+### CoreData
+[Blog](https://ekko.tistory.com/33)  
+[Github](https://github.com/Ekko0701/iOS_Tutorials/tree/main/CoreData%10_tutorial)
+⚠️✅
