@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A7A40DB28F4C0EE007EF34D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6A7A40DA28F4C0EE007EF34D /* README.md */; };
 		6A9FA0A328F4095E002616BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FA0A228F4095E002616BC /* AppDelegate.swift */; };
 		6A9FA0A528F4095E002616BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FA0A428F4095E002616BC /* SceneDelegate.swift */; };
 		6A9FA0A728F4095E002616BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FA0A628F4095E002616BC /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A7A40DA28F4C0EE007EF34D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6A9FA09F28F4095E002616BC /* CarouselEffect_Tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarouselEffect_Tutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A9FA0A228F4095E002616BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A9FA0A428F4095E002616BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +46,7 @@
 		6A9FA09628F4095E002616BC = {
 			isa = PBXGroup;
 			children = (
+				6A7A40DA28F4C0EE007EF34D /* README.md */,
 				6A9FA0A128F4095E002616BC /* CarouselEffect_Tutorial */,
 				6A9FA0A028F4095E002616BC /* Products */,
 			);
@@ -136,6 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A7A40DB28F4C0EE007EF34D /* README.md in Resources */,
 				6A9FA0AF28F4095E002616BC /* LaunchScreen.storyboard in Resources */,
 				6A9FA0AC28F4095E002616BC /* Assets.xcassets in Resources */,
 			);
