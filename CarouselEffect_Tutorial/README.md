@@ -1,4 +1,4 @@
-#Carousel Effect
+# Carousel Effect
 
 UICollectionView를 이용해 Carousel Effect를 구현하였다.
 
