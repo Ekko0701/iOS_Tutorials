@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     let minimumLineSpacing: CGFloat = 20
     
     var currentIndex: CGFloat = 0 // 현재 CollectionView의 페이지 인덱스
+    var previousIndex = 0
     
     //  Create UICollectionView
     private let collectionView: UICollectionView = {
@@ -28,7 +29,7 @@ class ViewController: UIViewController {
         layout.scrollDirection = .horizontal
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemTeal
+        collectionView.backgroundColor = .white
         
         return collectionView
     }()
@@ -36,8 +37,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .systemGray
+        
         configureLayout()
         configureCollectionView()
+        
+        pagingTimer()
     }
 
     //  SetUp AutoLayout with SnapKit
@@ -85,18 +90,6 @@ extension ViewController: UICollectionViewDelegate {
         // Index 값을 반올림한다.
         var roundedIndex = round(index)
         
-        
-        /*
-        // 추가 1) https://jintaewoo.tistory.com/33
-        // 스크롤 방향을 체크해 올림, 내림을 정한다.
-        if scrollView.contentOffset.x > targetContentOffset.pointee.x {
-            roundedIndex = floor(index)
-        } else {
-            roundedIndex = ceil(index)
-        }
-         */
-        
-        // 추가 2) https://jintaewoo.tistory.com/33
         // 한 페이지씩 스크롤
         if scrollView.contentOffset.x > targetContentOffset.pointee.x {
             roundedIndex = floor(index)
@@ -122,6 +115,44 @@ extension ViewController: UICollectionViewDelegate {
         
         // Offset 적용
         targetContentOffset.pointee = offset
+    }
+    
+    /// Scroll View Did Scroll
+    /// Add Hight Effect
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Cell의 너비
+        let width: CGFloat = collectionView.frame.size.width * cellWidthMultiplier
+        
+        // Cell간 간격을 포함한 Cell의 너비
+        let cellWidthIncludingSpacing = width + minimumLineSpacing
+        
+        let offsetX = collectionView.contentOffset.x
+        let index = (offsetX + collectionView.contentInset.left) / cellWidthIncludingSpacing
+        let roundedIndex = round(index)
+        let indexPath = IndexPath(item: Int(roundedIndex), section: 0)
+        
+        // 1번 방법
+        // 작동 but 비정상
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            applyAnimation(cell: cell)
+        }
+        
+        if Int(roundedIndex) != previousIndex {
+            let preIndexPath = IndexPath(item: previousIndex, section: 0)
+            if let preCell = collectionView.cellForItem(at: preIndexPath) {
+                removeAnimation(cell: preCell)
+            }
+            previousIndex = indexPath.item
+        }
+    }
+    
+    /// willDisplay
+    /// 첫번째 Item 크기 조절
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+
+        if indexPath.row == 0 {
+            applyAnimation(cell: cell)
+        }
     }
 }
 
@@ -163,7 +194,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         let height: CGFloat = collectionView.frame.size.height * cellHeightMultiplier
         
         let size: CGSize = CGSize(width: width, height: height)
-        
+       
         return size
     }
     
@@ -177,7 +208,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     /// Section의 Contents 여백
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        // 첫번째 Cell이 가운데 오도록 설정하자.
+        // 첫번째 Cell이 중앙에 오도록 설정하자.
         let width: CGFloat = collectionView.frame.size.width * cellWidthMultiplier
         
         let insetX = (view.frame.size.width - width) / 2.0
@@ -188,5 +219,67 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+//UICollectionView Auto Scroll
+extension ViewController {
+    func pagingTimer() {
+        let _: Timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { Timer in
+            self.moveToNextPage()
+        }
+    }
+    
+    func moveToNextPage() {
+        // Cell의 너비
+        let width: CGFloat = collectionView.frame.size.width * cellWidthMultiplier
+        let height: CGFloat = collectionView.frame.size.height * cellHeightMultiplier
+    
+        // Cell간 간격을 포함한 Cell의 너비
+        let cellWidthIncludingSpacing = width + minimumLineSpacing * 2
+        
+        // Inset
+        let insetX = (view.frame.size.width - width) / 2.0
+        
+        // ContentOffset: 현재 스크롤 위치
+        let contentOffset = collectionView.contentOffset
+        
+        // if - 마지막 페이지가 아닌 경우
+        if Int(currentIndex) != viewModels.count - 1 {
+            collectionView.scrollRectToVisible(CGRectMake(contentOffset.x + cellWidthIncludingSpacing + insetX, contentOffset.y, cellWidthIncludingSpacing, height ), animated: true)
+            
+            currentIndex += 1
+        }
+        
+        // else - 마지막 페이지인 경우
+        else {
+            collectionView.scrollRectToVisible(CGRectMake( 0, contentOffset.y, cellWidthIncludingSpacing, height), animated: true)
+            
+            currentIndex = 0
+        }
+    }
+}
 
+// Focus Cell Animations
+extension ViewController {
+    func applyAnimation(cell: UICollectionViewCell) {
+        UIView.animate(
+            withDuration: 0.4,
+            delay: 0,
+            options: .curveEaseOut,
+            animations: {
+                cell.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        },
+            completion: nil
+        )
+    }
+    
+    func removeAnimation(cell: UICollectionViewCell) {
+        UIView.animate(
+                    withDuration: 0.4,
+                    delay: 0,
+                    options: .curveEaseOut,
+                    animations: {
+                        cell.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                },
+                    completion: nil)
+    }
+}
 

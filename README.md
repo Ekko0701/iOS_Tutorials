@@ -23,7 +23,7 @@
 [Tistory](https://ekko.tistory.com/33)  
 [Github](https://github.com/Ekko0701/iOS_Tutorials/tree/main/CoreData%10_tutorial) 
 
-### CarouselEffect
-[Tistory]
-[Github] 
+### CarouselEffect ✅
+[iOS) Carousel Effect 배너 구현하기 (Card 레이아웃, 자동 스크롤) with UICollectionView](https://ekko.tistory.com/42)
+[Github](https://github.com/Ekko0701/iOS_Tutorials/tree/main/CarouselEffect_Tutorial)
 ⚠️✅

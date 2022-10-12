@@ -26,6 +26,10 @@ class MyCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 6
         contentView.layer.borderWidth = 1.5
         contentView.layer.borderColor = UIColor.quaternaryLabel.cgColor
+        
+        //  Animate
+        animateZoomforCell(zoomCell: self)
+        animateZoomforCellRemove(zoomCell: self)
     }
     
     required init?(coder: NSCoder) {
@@ -41,6 +45,31 @@ class MyCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = viewModel.backgroundColor
         label.text = viewModel.name
     }
+    
 }
 
 
+extension MyCollectionViewCell {
+    func animateZoomforCell (zoomCell: UICollectionViewCell) {
+        UIView.animate(
+            withDuration: 0.2,
+            delay: 0,
+            options: .curveEaseOut,
+            animations: {
+            zoomCell.transform = .identity
+        },
+            completion: nil
+        )
+    }
+    
+    func animateZoomforCellRemove(zoomCell: UICollectionViewCell) {
+        UIView.animate(
+                    withDuration: 0.2,
+                    delay: 0,
+                    options: .curveEaseOut,
+                    animations: {
+                        zoomCell.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                },
+                    completion: nil)
+    }
+}
